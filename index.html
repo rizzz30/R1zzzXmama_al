@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Mama AL - Street Food Favorit Keluarga. Pesan makanan lezat seperti Seblak, Takoyaki, Mie Nyemek langsung dari HP Anda!">
+    <meta name="keywords"
+        content="Mama AL, street food, warung makan, seblak, takoyaki, mie nyemek, pesan makanan online">
+    <meta name="author" content="Mama AL">
+    <meta name="theme-color" content="#14B8A6">
+
+    <title>Mama AL - Street Food Favorit Keluarga</title>
+
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍜</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tosca: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a' },
+                        cream: '#FFF8F0',
+                        'soft-orange': '#FFAB76',
+                    },
+                    fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-poppins bg-cream text-gray-800 antialiased">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-tosca-500 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading-bowl"><span class="text-6xl">🍜</span></div>
+            <p class="text-white text-xl font-semibold mt-4 animate-pulse">Mama AL</p>
+            <p class="text-tosca-100 text-sm mt-2">Menyiapkan menu lezat...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="flex items-center gap-2 group">
+                    <span class="text-3xl group-hover:animate-bounce">🍜</span>
+                    <div>
+                        <h1 class="text-xl font-bold text-tosca-600 leading-tight">Mama AL</h1>
+                        <p class="text-[10px] text-gray-500 -mt-1">Street Food</p>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home"
+                        class="nav-link text-gray-600 hover:text-tosca-600 font-medium transition-colors">Home</a>
+                    <a href="#menu"
+                        class="nav-link text-gray-600 hover:text-tosca-600 font-medium transition-colors">Menu</a>
+                    <a href="#kontak"
+                        class="nav-link text-gray-600 hover:text-tosca-600 font-medium transition-colors">Kontak</a>
+                    <button id="cart-btn-nav"
+                        class="relative bg-tosca-500 hover:bg-tosca-600 text-white px-4 py-2 rounded-full font-medium transition-all hover:scale-105 shadow-lg shadow-tosca-500/30">
+                        <i class="fas fa-shopping-cart mr-2"></i>Keranjang
+                        <span id="cart-count-nav"
+                            class="absolute -top-2 -right-2 bg-soft-orange text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                    </button>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-bars text-xl text-tosca-600"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#home"
+                    class="block py-2 px-4 rounded-lg hover:bg-tosca-50 text-gray-600 hover:text-tosca-600 transition-colors"><i
+                        class="fas fa-home mr-3"></i>Home</a>
+                <a href="#menu"
+                    class="block py-2 px-4 rounded-lg hover:bg-tosca-50 text-gray-600 hover:text-tosca-600 transition-colors"><i
+                        class="fas fa-utensils mr-3"></i>Menu</a>
+                <a href="#kontak"
+                    class="block py-2 px-4 rounded-lg hover:bg-tosca-50 text-gray-600 hover:text-tosca-600 transition-colors"><i
+                        class="fas fa-phone mr-3"></i>Kontak</a>
+                <button id="mobile-cart-btn"
+                    class="w-full text-left py-2 px-4 rounded-lg bg-tosca-50 text-tosca-700 font-medium hover:bg-tosca-100 transition-colors"><i
+                        class="fas fa-shopping-cart mr-3"></i>Keranjang Belanja</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-tosca-200 rounded-full opacity-30 blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-soft-orange rounded-full opacity-20 blur-3xl"></div>
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-tosca-100 to-transparent rounded-full opacity-50 blur-3xl">
+            </div>
+        </div>
+
+        <div class="floating-icons absolute inset-0 pointer-events-none">
+            <span class="absolute top-20 left-[10%] text-4xl opacity-20 animate-float-1">🍜</span>
+            <span class="absolute top-40 right-[15%] text-3xl opacity-20 animate-float-2">🥤</span>
+            <span class="absolute bottom-40 left-[20%] text-4xl opacity-20 animate-float-3">🍢</span>
+            <span class="absolute bottom-20 right-[25%] text-3xl opacity-20 animate-float-1">☕</span>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left" data-aos="fade-right">
+                    <div
+                        class="inline-flex items-center gap-2 bg-tosca-100 text-tosca-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-tosca-500 rounded-full animate-pulse"></span>
+                        Buka Sekarang • 10:00 - 21:00
+                    </div>
+
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-4">
+                        <span class="text-tosca-600">Mama</span> AL
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl text-gray-600 mb-2 font-medium">🌟 Street Food Favorit Keluarga</p>
+                    <p class="text-gray-500 mb-8 max-w-md mx-auto lg:mx-0">Nikmati kelezatan street food autentik dengan
+                        cita rasa yang bikin nagih! Pesan langsung dari HP kamu.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#menu"
+                            class="group bg-gradient-to-r from-tosca-500 to-tosca-600 hover:from-tosca-600 hover:to-tosca-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl shadow-tosca-500/30 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                            <i class="fas fa-utensils group-hover:rotate-12 transition-transform"></i>Pesan Sekarang
+                        </a>
+                        <a href="https://wa.me/6281316864708" target="_blank"
+                            class="bg-white hover:bg-gray-50 text-gray-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2 border border-gray-200">
+                            <i class="fab fa-whatsapp text-green-500"></i>Hubungi Kami
+                        </a>
+                    </div>
+
+                    <div class="flex items-center justify-center lg:justify-start gap-8 mt-10">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-tosca-600">500+</p>
+                            <p class="text-sm text-gray-500">Pelanggan Puas</p>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-tosca-600">⭐ 4.9</p>
+                            <p class="text-sm text-gray-500">Rating</p>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-tosca-600">15+</p>
+                            <p class="text-sm text-gray-500">Menu Lezat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative" data-aos="fade-left" data-aos-delay="200">
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <div
+                            class="relative bg-gradient-to-br from-tosca-400 to-tosca-600 rounded-[3rem] p-8 shadow-2xl">
+                            <div
+                                class="aspect-square rounded-[2rem] bg-white/20 backdrop-blur flex items-center justify-center overflow-hidden">
+                                <div class="text-center p-8">
+                                    <span class="text-[150px] block animate-bounce-slow">🍜</span>
+                                    <p class="text-white font-bold text-2xl mt-4">Mie Favorit!</p>
+                                </div>
+                            </div>
+                            <div class="absolute -left-8 top-1/4 bg-white rounded-2xl p-4 shadow-xl animate-float-2">
+                                <div class="flex items-center gap-3"><span class="text-3xl">🔥</span>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Best Seller</p>
+                                        <p class="text-sm text-gray-500">Seblak Pedas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute -right-4 bottom-1/4 bg-white rounded-2xl p-4 shadow-xl animate-float-1">
+                                <div class="flex items-center gap-3"><span class="text-3xl">⭐</span>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Terlaris!</p>
+                                        <p class="text-sm text-gray-500">Takoyaki</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#menu" class="flex flex-col items-center text-gray-400 hover:text-tosca-600 transition-colors">
+                <span class="text-sm mb-2">Scroll ke bawah</span><i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gradient-to-b from-cream to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <span
+                    class="inline-block bg-tosca-100 text-tosca-700 px-4 py-2 rounded-full text-sm font-medium mb-4">🍽️
+                    Menu Kami</span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Pilihan Menu <span
+                        class="text-tosca-600">Lezat</span></h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Nikmati berbagai pilihan street food autentik dengan harga
+                    terjangkau. Semua dibuat fresh setiap hari!</p>
+            </div>
+
+            <div class="flex justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="100">
+                <button class="category-tab active" data-category="all"><i
+                        class="fas fa-th-large mr-2"></i>Semua</button>
+                <button class="category-tab" data-category="makanan"><i
+                        class="fas fa-utensils mr-2"></i>Makanan</button>
+                <button class="category-tab" data-category="minuman"><i
+                        class="fas fa-glass-water mr-2"></i>Minuman</button>
+            </div>
+
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+
+    <!-- Payment Methods Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Metode Pembayaran</h3>
+                <p class="text-gray-500">Kami menerima berbagai metode pembayaran digital</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-10" data-aos="fade-up"
+                data-aos-delay="100">
+                <div class="payment-card">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-lg">QRIS</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 font-medium">QRIS</p>
+                </div>
+                <div class="payment-card">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-lg">Dana</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 font-medium">Dana</p>
+                </div>
+
+                <div class="payment-card">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                        <span class="text-white font-bold text-sm">GoPay</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 font-medium">GoPay</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-20 bg-gradient-to-b from-white to-tosca-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <span
+                        class="inline-block bg-tosca-100 text-tosca-700 px-4 py-2 rounded-full text-sm font-medium mb-4">📍
+                        Lokasi Kami</span>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Temukan <span class="text-tosca-600">Mama
+                            AL</span></h2>
+
+                    <div class="space-y-6">
+                        <div
+                            class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                            <div
+                                class="w-12 h-12 bg-tosca-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-tosca-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Alamat Warung</h4>
+                                <p class="text-gray-500">Perum, GCC blok JJ 1/7</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                            <div
+                                class="w-12 h-12 bg-tosca-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-tosca-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Jam Operasional</h4>
+                                <p class="text-gray-500">Setiap Hari: 10:00 - 21:00 WIB</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                            <div
+                                class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fab fa-whatsapp text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">WhatsApp</h4>
+                                <p class="text-gray-500">0813-1686-4708</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/6281316864708" target="_blank"
+                        class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-semibold mt-8 shadow-lg shadow-green-500/30 transition-all hover:scale-105">
+                        <i class="fab fa-whatsapp text-2xl"></i>Chat via WhatsApp
+                    </a>
+                </div>
+
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <div
+                        class="bg-gradient-to-br from-tosca-400 to-tosca-600 rounded-[2rem] p-8 text-center text-white shadow-2xl">
+                        <span class="text-8xl mb-4 block">📍</span>
+                        <h3 class="text-2xl font-bold mb-2">Warung Mama AL</h3>
+                        <p class="opacity-80 mb-6">Perum, GCC blok JJ 1/7</p>
+                        <div class="bg-white/20 backdrop-blur rounded-2xl p-6">
+                            <p class="text-lg font-medium">Scan QR Code di warung untuk memesan langsung dari HP kamu!
+                            </p>
+                            <div class="mt-4 bg-white rounded-xl p-4 inline-block"><span class="text-6xl">📱</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4"><span class="text-4xl">🍜</span>
+                        <div>
+                            <h3 class="text-2xl font-bold text-tosca-400">Mama AL</h3>
+                            <p class="text-sm text-gray-400">Street Food Favorit Keluarga</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Menyajikan street food lezat dengan harga terjangkau untuk keluarga
+                        Indonesia.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Menu Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-tosca-400 transition-colors">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-tosca-400 transition-colors">Menu</a></li>
+                        <li><a href="#kontak" class="text-gray-400 hover:text-tosca-400 transition-colors">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Ikuti Kami</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/itz_r1zzz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                            class="w-10 h-10 bg-gray-800 hover:bg-tosca-600 rounded-xl flex items-center justify-center transition-colors"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/6281316864708" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                            class="w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-xl flex items-center justify-center transition-colors"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2024 Mama AL. Made with ❤️ for Street Food Lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button -->
+    <button id="floating-cart-btn"
+        class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white rounded-full shadow-2xl shadow-tosca-500/40 z-40 flex items-center justify-center hover:scale-110 transition-all group">
+        <i class="fas fa-shopping-cart text-xl group-hover:animate-bounce"></i>
+        <span id="floating-cart-count"
+            class="absolute -top-1 -right-1 w-6 h-6 bg-soft-orange text-white text-xs rounded-full flex items-center justify-center font-bold hidden">0</span>
+    </button>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="cart-sidebar"
+        class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
+        <div class="flex flex-col h-full">
+            <div class="p-6 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold">Keranjang Kamu</h3>
+                        <p id="cart-total-items" class="text-tosca-100 text-sm">0 item</p>
+                    </div>
+                    <button id="close-cart"
+                        class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"><i
+                            class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+
+            <div id="empty-cart" class="flex-1 flex items-center justify-center p-8 text-center hidden">
+                <div><span class="text-6xl block mb-4">🛒</span>
+                    <h4 class="text-xl font-semibold text-gray-700 mb-2">Keranjang Kosong</h4>
+                    <p class="text-gray-500">Yuk, pilih menu favorit kamu!</p>
+                </div>
+            </div>
+
+            <div id="cart-footer" class="p-6 bg-gray-50 border-t hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span id="cart-subtotal" class="text-xl font-bold text-gray-900">Rp 0</span>
+                </div>
+                <button id="checkout-btn"
+                    class="w-full bg-gradient-to-r from-tosca-500 to-tosca-600 hover:from-tosca-600 hover:to-tosca-700 text-white py-4 rounded-2xl font-semibold shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                    <i class="fas fa-credit-card text-xl"></i>Lanjut Bayar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-overlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300">
+    </div>
+    <div id="payment-modal"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-md bg-white rounded-3xl shadow-2xl z-[60] hidden scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto">
+        <div class="p-6 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white rounded-t-3xl">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-bold">Pilih Pembayaran</h3>
+                    <p id="payment-total" class="text-tosca-100 text-sm">Total: Rp 0</p>
+                </div>
+                <button id="close-payment"
+                    class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"><i
+                        class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <button class="payment-option w-full" data-method="qris">
+                <div
+                    class="flex items-center gap-4 p-4 bg-gray-50 hover:bg-tosca-50 rounded-2xl transition-all border-2 border-transparent hover:border-tosca-500">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold">QRIS</span>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h4 class="font-semibold text-gray-900">QRIS</h4>
+                        <p class="text-sm text-gray-500">Scan QR untuk bayar</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </button>
+
+            <button class="payment-option w-full" data-method="dana">
+                <div
+                    class="flex items-center gap-4 p-4 bg-gray-50 hover:bg-tosca-50 rounded-2xl transition-all border-2 border-transparent hover:border-tosca-500">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold">Dana</span>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h4 class="font-semibold text-gray-900">Dana</h4>
+                        <p class="text-sm text-gray-500">Transfer ke Dana</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </button>
+
+
+
+            <button class="payment-option w-full" data-method="gopay">
+                <div
+                    class="flex items-center gap-4 p-4 bg-gray-50 hover:bg-tosca-50 rounded-2xl transition-all border-2 border-transparent hover:border-tosca-500">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">GoPay</span>
+                    </div>
+                    <div class="text-left flex-1">
+                        <h4 class="font-semibold text-gray-900">GoPay</h4>
+                        <p class="text-sm text-gray-500">Transfer ke GoPay</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </button>
+
+
+        </div>
+    </div>
+
+    <!-- Payment Detail Modal -->
+    <div id="payment-detail-modal"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-md bg-white rounded-3xl shadow-2xl z-[70] hidden scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto">
+        <div id="payment-detail-header"
+            class="p-6 bg-gradient-to-r from-tosca-500 to-tosca-600 text-white rounded-t-3xl">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 id="payment-detail-title" class="text-xl font-bold">Detail Pembayaran</h3>
+                    <p id="payment-detail-amount" class="text-tosca-100 text-sm">Total: Rp 0</p>
+                </div>
+                <button id="close-payment-detail"
+                    class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition-colors"><i
+                        class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <div id="payment-detail-content" class="p-6 text-center">
+            <!-- Content will be dynamically inserted -->
+        </div>
+
+        <div class="p-6 pt-0">
+            <button id="confirm-payment-btn"
+                class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-4 rounded-2xl font-semibold shadow-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-xl"></i>Konfirmasi via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 opacity-0 translate-y-4 transition-all duration-300 pointer-events-none">
+        <span class="text-2xl" id="toast-icon">✅</span>
+        <span id="toast-message">Berhasil ditambahkan!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
